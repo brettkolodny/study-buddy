@@ -1,0 +1,129 @@
+body {
+    background: #E5E5E5;
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#create-deck-button {
+    background-color: #2cda9d;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
+    color: #ffffff;
+    font-size: 46px;
+    text-align: center;
+    width: 282px;
+    height: 64px;
+}
+
+#create-dialog-container {
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+}
+
+#create-dialog {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    background-color: #39a9db;
+    border-radius: 15px;
+    height: 189px;
+    width: 437px;
+}
+
+#create-dialog-topbar {
+    background-color: #1c77c3;
+    border-radius: 15px 15px 0px 0px;
+    height: 34px;
+    width: 437px;
+}
+
+#create-dialog-exit {
+    background-color: #d63230;
+    border-radius: 100px;
+    float: right;
+    margin-right: 10px;
+    margin-top: 7px;
+    height: 20px;
+    width: 20px;
+}
+
+#create-dialog-button-container {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    width: 100%;
+    flex-grow: 1;
+}
+
+.create-dialog-button {
+    background-color: #2cda9d;
+    border-radius: 15px;
+    display: inline-block;
+    color: #ffffff;
+    font-size: 48px;
+    margin: 0 auto;
+    height: 57px;
+    width: 184px;
+    text-align: center;
+}
+
+.deck {
+    text-align: center;
+}
+
+.deck > * > span {
+    width: 100%;
+}
+
+.deck > * {
+    color: #ffffff;
+    display: inline-flex;
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 5%;
+    align-items: center;
+}
+
+.deck-due-div {
+    background-color: #d63230;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    height: 62px;
+    width: 102px;
+}
+
+.deck-due-div  > div {
+    margin: auto;
+}
+
+.deck-name-div {
+    background-color: #1c77c3;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px 0px 0px 15px;
+    height: 62px;
+    width: 322px;
+}
+
+.deck-new-div {
+    background-color: #39a9db;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 15px 15px 0px;
+    height: 62px;
+    width: 102px;
+}
+
+#title {
+    color: #1c77c3;
+    font-size: 80px;
+}
