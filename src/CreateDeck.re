@@ -1,12 +1,20 @@
 [@react.component]
 let make = () => {
-    let (show, setShow) = React.useState(() => false);
+    let (showDialog, setShowDialog) = React.useState(() => false);
+    let (showCreateCard, setShowCreateCard) = React.useState(() => false);
 
-    <div id="create-dialog-button-container" >
-        <CreateButton setShow={setShow} />
+    <div id="create-deck-container" >
+        <CreateDeckButton setShow={setShowDialog} />
         {
-            if (show) {
-                <CreateDialog setShow={setShow} />
+            if (showDialog) {
+                <CreateDeckDialog setShowDialog={setShowDialog} setShowCreateCard={setShowCreateCard}/>
+            } else {
+                <div></div>
+            };
+        }
+        {
+            if (showCreateCard) {
+                <NewCardWindow />
             } else {
                 <div></div>
             };

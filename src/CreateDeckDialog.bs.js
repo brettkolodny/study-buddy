@@ -5,27 +5,33 @@ var React = require("react");
 var Caml_option = require("bs-platform/lib/js/caml_option.js");
 var Dialog = require("tauri/api/dialog");
 
-function CreateDialog(Props) {
-  var setShow = Props.setShow;
+function CreateDeckDialog(Props) {
+  var setShowDialog = Props.setShowDialog;
+  var setShowCreateCard = Props.setShowCreateCard;
   return React.createElement("div", {
-              id: "create-dialog-container"
+              id: "create-deck-dialog-container"
             }, React.createElement("div", {
-                  id: "create-dialog"
+                  id: "create-deck-dialog"
                 }, React.createElement("div", {
-                      id: "create-dialog-topbar"
+                      id: "create-deck-dialog-topbar"
                     }, React.createElement("div", {
-                          id: "create-dialog-exit",
+                          id: "create-deck-dialog-exit",
                           onClick: (function (param) {
-                              return Curry._1(setShow, (function (param) {
+                              return Curry._1(setShowDialog, (function (param) {
                                             return false;
                                           }));
                             })
                         })), React.createElement("div", {
-                      id: "create-dialog-button-container"
+                      id: "create-deck-dialog-button-container"
                     }, React.createElement("div", {
-                          className: "create-dialog-button"
+                          className: "create-deck-dialog-button",
+                          onClick: (function (param) {
+                              return Curry._1(setShowCreateCard, (function (param) {
+                                            return true;
+                                          }));
+                            })
                         }, "New"), React.createElement("div", {
-                          className: "create-dialog-button",
+                          className: "create-deck-dialog-button",
                           onClick: (function (param) {
                               Dialog.open().then(function (value) {
                                       console.log(value);
@@ -39,7 +45,7 @@ function CreateDialog(Props) {
                         }, "Import"))));
 }
 
-var make = CreateDialog;
+var make = CreateDeckDialog;
 
 exports.make = make;
 /* react Not a pure module */

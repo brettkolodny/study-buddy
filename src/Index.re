@@ -14,13 +14,18 @@ let makeContainer = (text) => {
 
 ReactDOM.render(
     <div> 
-        <Title />
+        <h5 id="title">{ReasonReact.string("Study Buddy")}</h5>
         <Deck deckName="Japanese" dueCards=10 newCards=20 />
         <Deck deckName="Biochem" dueCards=15 newCards=20 />
         <CreateDeck />
+        <NewCardWindow />
     </div>, 
     makeContainer("root"));
 
+
 listen("rust-event", reply => {
-    Js.log(reply##payload##data);
+    Js.log("test");
+    let cards = reply##payload##cards;
+    Js.log(Array.length(cards));
+    Js.log(cards);
 });

@@ -4,8 +4,10 @@
 )]
 
 mod cmd;
+mod deck;
 
 use serde::Serialize;
+use crate::deck::Deck;
 
 #[derive(Serialize)]
 struct Reply {
@@ -18,11 +20,12 @@ fn main() {
       let mut webview = webview.as_mut();
       tauri::event::listen(String::from("js-event"), move |msg| {
         println!("got js-event with message '{:?}'", msg);
+        let deck = Deck::test();
         let reply = Reply {
           data: "test test".to_string(),
         };
 
-        tauri::event::emit(&mut webview, String::from("rust-event"), Some(reply))
+        tauri::event::emit(&mut webview, String::from("rust-event"), Some(deck))
           .expect("failed to emit");
       });
     })

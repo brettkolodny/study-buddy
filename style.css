@@ -1,5 +1,10 @@
+@font-face {
+    font-family: "paralucent";
+    src: url("assets/Paralucent W00 Medium.woff2") format('woff');
+}
+
 body {
-    background: #E5E5E5;
+    background: #373b51;
 }
 
 #root {
@@ -10,18 +15,19 @@ body {
 }
 
 #create-deck-button {
-    background-color: #2cda9d;
+    background-color: #6ff9d9;
+    color: #373b51;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 0 auto;
-    color: #ffffff;
+    font-family: paralucent,sans-serif;
     font-size: 46px;
     text-align: center;
     width: 282px;
     height: 64px;
 }
 
-#create-dialog-container {
+#create-deck-dialog-container {
     top: 0;
     left: 0;
     display: flex;
@@ -32,24 +38,25 @@ body {
     height: 100vh;
 }
 
-#create-dialog {
+#create-deck-dialog {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: flex;
     flex-direction: column;
-    background-color: #39a9db;
+    background-color: #373b51;
     border-radius: 15px;
     height: 189px;
     width: 437px;
 }
 
-#create-dialog-topbar {
-    background-color: #1c77c3;
+#create-deck-dialog-topbar {
+    background-color: #fbfcfc;
     border-radius: 15px 15px 0px 0px;
+    border-bottom: solid 2px rgb(235, 231, 231);
     height: 34px;
     width: 437px;
 }
 
-#create-dialog-exit {
+#create-deck-dialog-exit {
     background-color: #d63230;
     border-radius: 100px;
     float: right;
@@ -59,7 +66,7 @@ body {
     width: 20px;
 }
 
-#create-dialog-button-container {
+#create-deck-dialog-button-container {
     display: flex;
     align-items: center;
     justify-items: center;
@@ -67,11 +74,12 @@ body {
     flex-grow: 1;
 }
 
-.create-dialog-button {
-    background-color: #2cda9d;
+.create-deck-dialog-button {
+    background-color: #6ff9d9;
+    color: #373b51;
+    font-family: paralucent, sans-serif;
     border-radius: 15px;
     display: inline-block;
-    color: #ffffff;
     font-size: 48px;
     margin: 0 auto;
     height: 57px;
@@ -97,6 +105,8 @@ body {
 }
 
 .deck-due-div {
+    color: #fbfcfc;
+    font-family: paralucent,sans-serif;
     background-color: #d63230;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     height: 62px;
@@ -108,7 +118,9 @@ body {
 }
 
 .deck-name-div {
-    background-color: #1c77c3;
+    color: #fbfcfc;
+    font-family: paralucent,sans-serif;
+    background-color: #516588;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px 0px 0px 15px;
     height: 62px;
@@ -116,7 +128,9 @@ body {
 }
 
 .deck-new-div {
-    background-color: #39a9db;
+    color: #516588;
+    background-color: #fbfcfc;
+    font-family: paralucent,sans-serif;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 0px 15px 15px 0px;
     height: 62px;
@@ -124,6 +138,8 @@ body {
 }
 
 #title {
-    color: #1c77c3;
+    text-align: center;
+    font-family: paralucent,sans-serif;
+    color: #fbfcfc;
     font-size: 80px;
 }

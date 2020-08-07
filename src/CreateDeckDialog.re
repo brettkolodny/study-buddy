@@ -2,7 +2,7 @@
 [@bs.module "tauri/api/event"] external emit : (string, string) => unit = "emit";
 
 [@react.component]
-let make = (~setShow) => {
+let make = (~setShowDialog, ~setShowCreateCard) => {
     let openDeck = () => {
         let paths = tauriOpen() 
         |> Js.Promise.then_(value => {
@@ -13,17 +13,18 @@ let make = (~setShow) => {
                 Js.log(err);
                 Js.Promise.resolve(None);
             });
+
     };
 
-    <div id="create-dialog-container">
-        <div id="create-dialog">
-            <div id="create-dialog-topbar">
-                <div id="create-dialog-exit" onClick={_ => setShow(_ => false)}>
+    <div id="create-deck-dialog-container">
+        <div id="create-deck-dialog">
+            <div id="create-deck-dialog-topbar">
+                <div id="create-deck-dialog-exit" onClick={_ => setShowDialog(_ => false)}>
                 </div>
             </div>
-            <div id="create-dialog-button-container">
-                <div className="create-dialog-button">{ReasonReact.string("New")}</div>
-                <div className="create-dialog-button" onClick={_ => openDeck()}>{ReasonReact.string("Import")}</div>
+            <div id="create-deck-dialog-button-container">
+                <div className="create-deck-dialog-button" onClick={_ => setShowCreateCard(_ => true)}>{ReasonReact.string("New")}</div>
+                <div className="create-deck-dialog-button" onClick={_ => openDeck()}>{ReasonReact.string("Import")}</div>
             </div>
         </div>
     </div>
