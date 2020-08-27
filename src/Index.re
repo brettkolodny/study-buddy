@@ -13,12 +13,11 @@ let makeContainer = (text) => {
 };
 
 ReactDOM.render(
-    <div> 
+    <div id="container"> 
         <h5 id="title">{ReasonReact.string("Study Buddy")}</h5>
         <Deck deckName="Japanese" dueCards=10 newCards=20 />
         <Deck deckName="Biochem" dueCards=15 newCards=20 />
         <CreateDeck />
-        <NewCardWindow />
     </div>, 
     makeContainer("root"));
 

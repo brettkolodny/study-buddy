@@ -12,7 +12,7 @@ function CreateDeckButton(Props) {
                                 return true;
                               }));
                 })
-            }, React.createElement("span", undefined, "Create"));
+            }, React.createElement("div", undefined, "Create"));
 }
 
 var make = CreateDeckButton;

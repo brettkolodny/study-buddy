@@ -7,3 +7,19 @@ npm-debug.log
 /node_modules/
 /bundleOutput/
 /src-tauri/target
+
+
+.DS_Store
+finalOutput/*.js
+.install
+/lib/ocaml/
+*.log
+_esy
+_build
+*.install
+dist
+.cache
+lib
+
+# Editor
+/.idea/

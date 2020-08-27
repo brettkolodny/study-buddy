@@ -3,6 +3,20 @@
     src: url("assets/Paralucent W00 Medium.woff2") format('woff');
 }
 
+@keyframes scroll-up {
+    from {margin-top: 100vh}
+    to {margin-top: 0vh}
+}
+
+@keyframes scroll-down {
+    from {margin-top: 0vh}
+    to {margin-top: 100vh}
+}
+
+body {
+    overflow: hidden;
+}
+
 body {
     background: #373b51;
 }
@@ -25,66 +39,6 @@ body {
     text-align: center;
     width: 282px;
     height: 64px;
-}
-
-#create-deck-dialog-container {
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
-}
-
-#create-deck-dialog {
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    background-color: #373b51;
-    border-radius: 15px;
-    height: 189px;
-    width: 437px;
-}
-
-#create-deck-dialog-topbar {
-    background-color: #fbfcfc;
-    border-radius: 15px 15px 0px 0px;
-    border-bottom: solid 2px rgb(235, 231, 231);
-    height: 34px;
-    width: 437px;
-}
-
-#create-deck-dialog-exit {
-    background-color: #d63230;
-    border-radius: 100px;
-    float: right;
-    margin-right: 10px;
-    margin-top: 7px;
-    height: 20px;
-    width: 20px;
-}
-
-#create-deck-dialog-button-container {
-    display: flex;
-    align-items: center;
-    justify-items: center;
-    width: 100%;
-    flex-grow: 1;
-}
-
-.create-deck-dialog-button {
-    background-color: #6ff9d9;
-    color: #373b51;
-    font-family: paralucent, sans-serif;
-    border-radius: 15px;
-    display: inline-block;
-    font-size: 48px;
-    margin: 0 auto;
-    height: 57px;
-    width: 184px;
-    text-align: center;
 }
 
 .deck {
@@ -139,7 +93,52 @@ body {
 
 #title {
     text-align: center;
-    font-family: paralucent,sans-serif;
+    font-family: paralucent, sans-serif;
     color: #fbfcfc;
     font-size: 80px;
+}
+
+#create-dialog {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0vh;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #6ff9d9;
+}
+
+#create-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.create-button {
+    font-family: paralucent, sans-serif;
+    width: 282px;
+    height: 64px;
+    color: #516588;
+    background-color: #fbfcfc;
+    font-size: 46px;
+    text-align: center;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-top: 30%;
+    margin-bottom: 30%;
+}
+
+.down {
+    /* margin-top: 80vh; */
+}
+
+.open {
+    animation: scroll-up 0.25s linear 0s 1 normal none;
+}
+
+.close {
+    animation: scroll-down 0.25s linear 0s 1 normal none;
 }
