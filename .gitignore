@@ -19,6 +19,7 @@ _build
 *.install
 dist
 .cache
+/src/*.js
 lib
 
 # Editor
