@@ -1,18 +1,26 @@
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 
-#[derive(Serialize)]
+#[derive(Serialize, Deserialize)]
 pub struct Deck {
-    cards: Vec<Card>
+    pub name: String,
+    pub cards: Vec<Card>,
 }
 
-#[derive(Serialize)]
-struct Card {
+#[derive(Serialize, Deserialize, Debug)]
+pub struct Card {
     front: String,
     back: String,
     priority: u32,
 }
 
 impl Deck {
+    pub fn from(deckString: String) -> Self {
+
+        let deck: Deck = serde_json::from_str(&deckString).unwrap();
+
+        deck
+    }
+
     pub fn test() -> Self {
         let card1 = Card { 
             front: String::from("side1"), 
@@ -28,6 +36,6 @@ impl Deck {
 
         let cards = vec![card1, card2];
 
-        Deck { cards }
+        Deck { name: "test".to_string(), cards }
     }
 }

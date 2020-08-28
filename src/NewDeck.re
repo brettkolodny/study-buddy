@@ -8,6 +8,7 @@
 type card = {
     front: string,
     back: string,
+    priority: int,
 };
 
 type deck = {
@@ -49,6 +50,7 @@ let make = (~setShowNewDeck) => {
         let newCard = {
             front: frontValue,
             back: backValue,
+            priority: 100,
         };
 
         setCards(_ => [newCard, ...cards]);
@@ -64,7 +66,18 @@ let make = (~setShowNewDeck) => {
             cards: Array.of_list(cards),
         };
 
-        Js.log(Js.Json.stringifyAny(newDeck));
+        let deckJson = Js.Json.stringifyAny(newDeck);
+
+        switch deckJson {
+        | Some(v) => {
+            let createCmd: Utility.command = {
+                cmd: "createDeck",
+                argument: v,
+            };
+            Utility.invoke(createCmd);
+        }
+        | None => ()
+        };
 
         let container = getElementById("new-deck", document)
 

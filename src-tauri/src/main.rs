@@ -21,7 +21,7 @@ fn main() {
       tauri::event::listen(String::from("js-event"), move |msg| {
         println!("got js-event with message '{:?}'", msg);
         let deck = Deck::test();
-        let reply = Reply {
+        let _reply = Reply {
           data: "test test".to_string(),
         };
 
@@ -41,6 +41,10 @@ fn main() {
             MyCustomCommand { argument } => {
               //  your command code
               println!("{}", argument);
+            },
+            CreateDeck { argument } => {
+              let deck = Deck::from(argument);
+              println!("{:?}", deck.cards);
             }
           }
           Ok(())
