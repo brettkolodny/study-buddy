@@ -7,7 +7,7 @@
 [@bs.send.pipe: Dom.document] external getElementById: string => Dom.element = "getElementById";
 [@bs.get] external getStyle: Dom.element => Dom.cssStyleDeclaration = "style";
 
-//let downSvg = Utility.require("../assets/svg/down.svg");
+let downSvg = Utility.require("../assets/svg/down.svg");
 
 [@react.component]
 let make = (~setShowDialog, ~setShowNewDeck) => {
@@ -50,6 +50,6 @@ let make = (~setShowDialog, ~setShowNewDeck) => {
                 <span>{ReasonReact.string("Import")}</span>
             </div>
         </div>
-        <img className="down" src="../assets/svg/down.svg" onClick={_ => closeWindow()}/>
+        <img className="down" src=downSvg onClick={_ => closeWindow()}/>
     </div>
 }

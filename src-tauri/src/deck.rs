@@ -14,9 +14,9 @@ pub struct Card {
 }
 
 impl Deck {
-    pub fn from(deckString: String) -> Self {
+    pub fn from(deck_string: String) -> Self {
 
-        let deck: Deck = serde_json::from_str(&deckString).unwrap();
+        let deck: Deck = serde_json::from_str(&deck_string).unwrap();
 
         deck
     }

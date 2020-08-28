@@ -5,6 +5,8 @@
 [@bs.get] external getValue: Dom.element => string = "value";
 [@bs.set] external setValue: (Dom.element, string) => unit = "value";
 
+let downSvg = Utility.require("../assets/svg/down.svg");
+
 type card = {
     front: string,
     back: string,
@@ -98,6 +100,6 @@ let make = (~setShowNewDeck) => {
                 <div onClick={_ => createDeck()}>{ReasonReact.string("Done")}</div>
                 <div onClick={_ => addCard()}>{ReasonReact.string("Add")}</div>
         </div>
-        <img className="down" src="../assets/svg/down.svg" onClick={_ => closeWindow()}/>
+        <img className="down" src=downSvg onClick={_ => closeWindow()}/>
     </div>
 };
