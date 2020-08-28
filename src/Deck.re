@@ -11,4 +11,4 @@ let make = (~deckName, ~dueCards, ~newCards) => {
             <span>{ReasonReact.string(string_of_int(newCards))}</span>
         </div>
     </div>
-}
+};

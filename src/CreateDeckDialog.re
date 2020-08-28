@@ -10,7 +10,7 @@
 //let downSvg = Utility.require("../assets/svg/down.svg");
 
 [@react.component]
-let make = (~setShowDialog, ~setShowCreateCard) => {
+let make = (~setShowDialog, ~setShowNewDeck) => {
     let openDeck = () => {
         let _paths = tauriOpen() 
         |> Js.Promise.then_(value => {
@@ -33,13 +33,17 @@ let make = (~setShowDialog, ~setShowCreateCard) => {
 
         container -> Element.classList |> DomTokenList.remove("open");
         container -> Element.classList |> DomTokenList.add("close");
-        setTimeout(_ => setShowDialog(_ => false), 250);
-        Js.log("clicked");
+        setTimeout(_ => setShowDialog(_ => false), 200);
+    };
+
+    let newClick = () => {
+        setShowNewDeck(_ => true);
+        setTimeout(_ => setShowDialog(_ => false), 200);
     };
 
     <div id="create-dialog" className="open">
         <div id="create-buttons">
-            <div className="create-button" onClick={_ => Js.log("pressed")}>
+            <div className="create-button" onClick={_ => newClick()}>
                 <span>{ReasonReact.string("New")}</span>
             </div>
             <div className="create-button" onClick={_ => openDeck()}>

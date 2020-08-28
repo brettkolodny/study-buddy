@@ -13,6 +13,14 @@
     to {margin-top: 100vh}
 }
 
+.open {
+    animation: scroll-up 0.2s linear 0s 1 normal none;
+}
+
+.close {
+    animation: scroll-down 0.2s linear 0s 1 normal none;
+}
+
 body {
     overflow: hidden;
 }
@@ -39,6 +47,10 @@ body {
     text-align: center;
     width: 282px;
     height: 64px;
+}
+
+#create-deck-button:hover {
+    cursor: pointer;
 }
 
 .deck {
@@ -127,18 +139,84 @@ body {
     text-align: center;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 30%;
-    margin-bottom: 30%;
+    margin-top: 30vh;
+    margin-bottom: 30vh;
 }
 
-.down {
-    /* margin-top: 80vh; */
+.create-button:hover {
+    cursor: pointer;
 }
 
-.open {
-    animation: scroll-up 0.25s linear 0s 1 normal none;
+.down:hover {
+    cursor: pointer;
 }
 
-.close {
-    animation: scroll-down 0.25s linear 0s 1 normal none;
+#new-deck {
+    position: absolute;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    margin-top: 0vh;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fbfcfc;
+}
+
+#new-deck > input {
+    font-family: paralucent, sans-serif;
+    font-size: 80px;
+    color: #516588;
+    text-align: center;
+}
+
+#new-card {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 1043px;
+    height: 503px;
+    background: #516588;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
+    border: none;
+}
+
+#new-card > textarea {
+    font-family: paralucent, sans-serif;
+    font-size: 76px;
+    color:  #516588;
+    margin: 0 auto;
+    text-align: center;
+    resize: none;
+    background-color: #fbfcfc;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    width: 1024px;
+    height: 220px;
+}
+
+#new-deck-buttons {
+    margin-top: 20px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-evenly;
+}
+
+#new-deck-buttons > div {
+    background-color: #6ff9d9;
+    color: #373b51;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
+    font-family: paralucent,sans-serif;
+    font-size: 46px;
+    text-align: center;
+    width: 282px;
+    height: 64px;
+}
+
+#new-deck-buttons > div:hover {
+    cursor: pointer;
 }
