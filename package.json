@@ -23,7 +23,7 @@
     "tauri": "^0.11.0"
   },
   "devDependencies": {
-    "bs-platform": "^8.0.3",
+    "bs-platform": "^8.2.0",
     "moduleserve": "^0.9.0",
     "parcel": "^1.12.4"
   }
