@@ -8,11 +8,6 @@
     to {margin-top: 100vh}
 }
 
-@keyframes elevate {
-    from {box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)}
-    to {box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);}
-}
-
 .open {
     animation: scroll-up 0.2s linear 0s 1 normal none;
 }
@@ -73,6 +68,7 @@ body {
     
     background-color: #1992D4;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: box-shadow .1s ease-in-out;
     border-radius: 30px;
 
     
@@ -88,7 +84,6 @@ body {
 
 #create-deck-button:hover {
     cursor: pointer;
-    animation: elevate 0.1s linear 0s 1 normal none;
     box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.30);
 }
 
@@ -167,36 +162,41 @@ body {
 }
 
 #create-dialog {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin-top: 0vh;
-    top: 0px;
-    left: 0px;
+    margin-left: 0vw;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: #6ff9d9;
+    background-color: #E5E5E5;
 }
 
 #create-buttons {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .create-button {
-    font-family: paralucent, sans-serif;
     width: 282px;
     height: 64px;
-    color: #516588;
-    background-color: #fbfcfc;
-    font-size: 46px;
-    text-align: center;
     border-radius: 30px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 30vh;
-    margin-bottom: 30vh;
+    margin: 0 auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-color: #DE911D;
+
+    font-family: Lato;
+    font-size: 48px;
+    text-align: center;
+    line-height: 64px;
+
+    color: #FFFFFF;
 }
 
 .create-button:hover {
@@ -204,29 +204,42 @@ body {
 }
 
 .down {
-    width: 100px;
-    height: 100px;
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    top: 40vh;
+    width: 100%;
     margin: 0 auto;
 }
 
 .down > img {
-    width: 50px;
-    height: 50px;
+    text-align: center;
+    width: 75px;
+    height: 75px;
+    margin: 0 auto;
 }
-.down:hover {
+.down > img:hover {
     cursor: pointer;
 }
 
+/* .down > img:active {
+    display: none;
+} */
+
 #new-deck {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
+
     margin-top: 0vh;
     top: 0px;
     left: 0px;
     width: 100vw;
     height: 100vh;
-    background-color: #E4E7EB;
+
+    background-color: #E5E5E5
 }
 
 #new-deck-body {
@@ -239,20 +252,26 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #F5F7FA;
+
     width: 100%;
     height: 126px;
+
+    background-color: #F7C948;
 }
 
 #deck-name {
     margin: 0 auto;
-    background-color: #F5F7FA;
-    color: #F9703E;
-    font-family: paralucent, sans-serif;
-    font-size: 72px;
-    text-align: center;
+
+    background-color: #F7C948;
     border: none;
     outline: none;
+
+    font-family: Lato;
+    font-weight: 600;
+    font-size: 72px;
+    text-align: center;
+
+    color: #3B3B3B;
 }
 
 #new-cards-count {
@@ -307,7 +326,6 @@ body {
     justify-content: space-evenly;
     width: 112px;
     height: 45px;
-    
     background: #A3D9A5;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
@@ -321,6 +339,7 @@ body {
  #add-button > div {
     display: flex;
     align-items: center;
+
     text-align: center;
     font-family: Lato;
     font-style: normal;
@@ -328,10 +347,6 @@ body {
     font-size: 24px;
     
     color: #3E4C59;
-    /* text-align: center;
-    margin: 0 auto;
-    vertical-align: middle;
-    line-height: 45px; */
  }
 
  #done-button {
@@ -353,8 +368,8 @@ body {
     background-color: #FFB088;
  }
 
- /* #discard-button {
-     margin: 0 auto;
+ #discard-button {
+    margin: 0 auto;
     font-family: Lato;
     font-style: normal;
     font-weight: normal;
@@ -366,15 +381,16 @@ body {
     padding-right: 10px;
     
     color: #B1B1B1;
+    background-color: hsl(0, 0, 0);
  }
 
  #discard-button:hover {
     cursor: pointer;
-    background-color: #D64545;
+    background-color: #EF4E4E;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    color: #E4E7EB;
- } */
+    color: #F7F7F7;
+ }
 
 #new-deck-buttons > div:hover {
     cursor: pointer;

@@ -49,6 +49,8 @@ let make = (~setShowDialog, ~setShowNewDeck) => {
                 <span>{ReasonReact.string("Import")}</span>
             </div>
         </div>
-        <img className="down" src=downSvg onClick={_ => closeWindow()}/>
+        <div className="down">
+            <img className="down" src=downSvg onClick={_ => closeWindow()}/>
+        </div>
     </div>
 }

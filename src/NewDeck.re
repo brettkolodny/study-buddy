@@ -108,6 +108,9 @@ let make = (~setShowNewDeck) => {
             <NewCard />
             <div id="new-deck-body">
                 <div id ="new-deck-buttons">
+                    <div id="discard-button" onClick={_ => closeWindow()}>
+                        {ReasonReact.string("discard")}
+                    </div>
                     <div id="done-button" onClick={_ => createDeck()}>{ReasonReact.string("Done")}</div>
                     <div id="add-button" onClick={_ => addCard()}>
                         <img src=checkSvg />
@@ -116,6 +119,5 @@ let make = (~setShowNewDeck) => {
                 </div>
             </div>
         </div>
-        <img className="down" src=downSvg onClick={_ => closeWindow()}/>
     </div>
 };
