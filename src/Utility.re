@@ -1,16 +1,14 @@
 [@bs.val] external require: string => string = "require";
 
-type command = {
+type createDeckCommand = {
     cmd: string,
-    argument: string,
+    deckName: string,
+    deck: string,
 };
 
-[@bs.module "tauri/api/tauri"] external invoke : command => unit = "invoke";
-
-let (*:) = (a: string, b: string) => {
-    Js.log(a ++ b);
+type importDeckCommand = {
+    deckPath: string
 };
 
-let test = (a, b) => {
-    a *: b;
-};
+[@bs.module "tauri/api/tauri"] external createDeck : createDeckCommand => unit = "invoke";
+[@bs.module "tauri/api/tauri"] external importDeck : importDeckCommand => unit = "invoke";

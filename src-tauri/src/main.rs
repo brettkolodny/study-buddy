@@ -6,6 +6,10 @@
 mod cmd;
 mod deck;
 
+use std::fs;
+use std::path::PathBuf;
+use home;
+
 use serde::Serialize;
 use crate::deck::Deck;
 
@@ -42,9 +46,18 @@ fn main() {
               //  your command code
               println!("{}", argument);
             },
-            CreateDeck { argument } => {
-              let deck = Deck::from(argument);
-              println!("{:?}", deck.cards);
+            CreateDeck { deckName, deck } => {
+              if let Some(mut home) = home::home_dir() {
+                let tauri_path = PathBuf::from(".tauri/decks");
+                home.push(tauri_path);
+                
+                if !home.as_path().exists() {
+                  fs::create_dir_all(home.as_path());
+                }
+
+                home.push(PathBuf::from(format!("{}.json", deckName)));
+                fs::write(home.as_path(), deck.as_bytes()).unwrap();
+              }
             }
           }
           Ok(())

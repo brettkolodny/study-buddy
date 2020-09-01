@@ -11,19 +11,6 @@ let downSvg = Utility.require("../assets/svg/down.svg");
 
 [@react.component]
 let make = (~setShowDialog, ~setShowNewDeck) => {
-    let openDeck = () => {
-        let _paths = tauriOpen() 
-        |> Js.Promise.then_(value => {
-                Js.log(value);
-                Js.Promise.resolve(Some(value));
-            })
-        |> Js.Promise.catch(err => {
-                Js.log(err);
-                Js.Promise.resolve(None);
-            });
-
-    };
-
     let closeWindow = () => {
         let container = getElementById("create-dialog", document)
 
@@ -33,6 +20,20 @@ let make = (~setShowDialog, ~setShowNewDeck) => {
         container -> Webapi.Dom.Element.classList |> Webapi.Dom.DomTokenList.remove("open");
         container -> Webapi.Dom.Element.classList |> Webapi.Dom.DomTokenList.add("close");
         setTimeout(_ => setShowDialog(_ => false), 200);
+    };
+
+    let openDeck = () => {
+        let _paths = tauriOpen() 
+        |> Js.Promise.then_(value => {
+                Js.log(value);
+                closeWindow();
+                Js.Promise.resolve(Some(value));
+            })
+        |> Js.Promise.catch(err => {
+                Js.log(err);
+                Js.Promise.resolve(None);
+            });
+
     };
 
     let newClick = () => {

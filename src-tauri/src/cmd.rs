@@ -7,5 +7,5 @@ pub enum Cmd {
   // multiple arguments are allowed
   // note that rename_all = "camelCase": you need to use "myCustomCommand" on JS
   MyCustomCommand { argument: String },
-  CreateDeck { argument: String },
+  CreateDeck { deckName: String, deck: String },
 }

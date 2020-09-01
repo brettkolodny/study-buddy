@@ -70,11 +70,12 @@ let make = (~setShowNewDeck) => {
 
         switch deckJson {
         | Some(v) => {
-            let createCmd: Utility.command = {
+            let createCmd: Utility.createDeckCommand = {
                 cmd: "createDeck",
-                argument: v,
+                deckName: deckName,
+                deck: v,
             };
-            Utility.invoke(createCmd);
+            Utility.createDeck(createCmd);
         }
         | None => ()
         };
