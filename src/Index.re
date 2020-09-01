@@ -14,10 +14,15 @@ let makeContainer = (text) => {
 
 ReactDOM.render(
     <div id="container"> 
-        <h5 id="title">{ReasonReact.string("Study Buddy")}</h5>
-        <Deck deckName="Japanese" dueCards=10 newCards=20 />
-        <Deck deckName="Biochem" dueCards=15 newCards=20 />
-        <CreateDeck />
+        <div id="top-background"></div>
+        <div id="top">
+            <h5 id="title">{ReasonReact.string("Study Buddy")}</h5>
+            <CreateDeck />
+        </div>
+        <div id="decks">
+            <Deck deckName="Japanese" dueCards=10 newCards=20 />
+            <Deck deckName="Biochem" dueCards=15 newCards=20 />
+        </div>
     </div>, 
     makeContainer("root"));
 

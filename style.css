@@ -1,8 +1,3 @@
-@font-face {
-    font-family: "paralucent";
-    src: url("assets/Paralucent W00 Medium.woff2") format('woff');
-}
-
 @keyframes scroll-up {
     from {margin-top: 100vh}
     to {margin-top: 0vh}
@@ -11,6 +6,11 @@
 @keyframes scroll-down {
     from {margin-top: 0vh}
     to {margin-top: 100vh}
+}
+
+@keyframes elevate {
+    from {box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)}
+    to {box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);}
 }
 
 .open {
@@ -26,7 +26,7 @@ body {
 }
 
 body {
-    background: #373b51;
+    background: #F7F7F7;
 }
 
 #root {
@@ -36,24 +36,70 @@ body {
     flex-direction: column;
 }
 
-#create-deck-button {
-    background-color: #6ff9d9;
-    color: #373b51;
-    border-radius: 30px;
+#top-background {
+    position: absolute;
+    display: flex;
+    width: 100vw;
+    height: 192px;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+
+    background: #F7C948;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#top {
+    position: absolute;
+    z-index: 2;
+}
+
+#title {
     margin: 0 auto;
-    font-family: paralucent,sans-serif;
-    font-size: 46px;
+    margin-top: 46px;
+    margin-bottom: 24px;
+    font-family: Lato;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 72px;
     text-align: center;
+    
+    color: #3B3B3B;
+}
+
+#create-deck-button {
     width: 282px;
     height: 64px;
+    
+    background-color: #1992D4;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+
+    
+    margin: 0 auto;
+    line-height: 64px;
+
+    font-family: Lato;
+    font-size: 48px;
+    text-align: center;
+
+    color: #F7F7F7;
 }
 
 #create-deck-button:hover {
     cursor: pointer;
+    animation: elevate 0.1s linear 0s 1 normal none;
+    box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.30);
+}
+
+#decks {
+    margin-top: 264px;
+    z-index: -1;
 }
 
 .deck {
+    display: flex;
+    flex-direction: row;
     text-align: center;
 }
 
@@ -63,51 +109,61 @@ body {
 
 .deck > * {
     color: #ffffff;
-    display: inline-flex;
     font-size: 30px;
     text-align: center;
     margin-bottom: 5%;
-    align-items: center;
+    justify-content: center;
 }
 
 .deck-due-div {
-    color: #fbfcfc;
-    font-family: paralucent,sans-serif;
-    background-color: #d63230;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     height: 62px;
     width: 102px;
+
+    background-color: #EF4E4E;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    font-family: Lato;
+    font-size: 32px;
+    text-align: center;
+    line-height: 62px;
+
+    color: #fbfcfc;
 }
 
 .deck-due-div  > div {
-    margin: auto;
+    margin: 0 auto;
 }
 
 .deck-name-div {
-    color: #fbfcfc;
-    font-family: paralucent,sans-serif;
-    background-color: #516588;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 15px 0px 0px 15px;
     height: 62px;
     width: 322px;
+
+    background: #1992D4;
+    border-radius: 15px 0px 0px 15px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    font-family: Lato;
+    font-size: 32px;
+    line-height: 62px;
+    text-align: center;
+
+    color: #F7F7F7;
 }
 
 .deck-new-div {
-    color: #516588;
-    background-color: #fbfcfc;
-    font-family: paralucent,sans-serif;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 0px 15px 15px 0px;
     height: 62px;
     width: 102px;
-}
 
-#title {
+    background-color: #40C3F7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 0px 15px 15px 0px;
+
+    font-family: Lato;
+    font-size:32px;
     text-align: center;
-    font-family: paralucent, sans-serif;
-    color: #fbfcfc;
-    font-size: 80px;
+    line-height: 62px;
+
+    color: #F7F7F7;
 }
 
 #create-dialog {
