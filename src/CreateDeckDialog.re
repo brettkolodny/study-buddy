@@ -1,6 +1,3 @@
-[@bs.module "tauri/api/dialog"] external tauriOpen : unit => Js.Promise.t('a) = "open";
-[@bs.module "tauri/api/event"] external emit : (string, string) => unit = "emit";
-
 [@bs.val] external setTimeout: (unit => unit, int) => unit = "setTimeout";
 
 [@bs.val] external document: Dom.document = "document";
@@ -23,9 +20,9 @@ let make = (~setShowDialog, ~setShowNewDeck) => {
     };
 
     let openDeck = () => {
-        let _paths = tauriOpen() 
+        let _paths = Tauri.openDialog() 
         |> Js.Promise.then_(value => {
-                Utility.importDeck(value);
+                Tauri.importDeck(value);
                 closeWindow();
                 Js.Promise.resolve(Some(value));
             })

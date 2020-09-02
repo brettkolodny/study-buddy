@@ -22,13 +22,13 @@ fn main() {
   tauri::AppBuilder::new()
     .setup(|webview, _source| {
       let mut webview = webview.as_mut();
-      tauri::event::listen(String::from("js-event"), move |msg| {
+      tauri::event::listen(String::from("test"), move |msg| {
         println!("got js-event with message '{:?}'", msg);
         let _reply = Reply {
           data: "test test".to_string(),
         };
 
-        tauri::event::emit(&mut webview, String::from("rust-event"), Some("from rust"))
+        tauri::event::emit(&mut webview, String::from("test-event"), Some("from rust"))
           .expect("failed to emit");
       });
     })
@@ -61,7 +61,6 @@ fn main() {
                 let split_path: Vec<&str> = path.split("/").collect();
 
                 let file = split_path[split_path.len() - 1];
-                dbg!{&file};
                 if let Some(mut home) = home::home_dir() {
                   let tauri_path = PathBuf::from(".tauri/decks");
                   home.push(tauri_path);
@@ -78,6 +77,11 @@ fn main() {
               } else {
                 dbg!{"is not deck"};
               }
+            },
+            Test => {
+              let mut webview = _webview.as_mut();
+              tauri::event::emit(&mut webview, String::from("test-event"), Some("from rust"))
+                .expect("failed to emit");
             }
           }
           Ok(())

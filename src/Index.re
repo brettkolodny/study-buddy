@@ -1,7 +1,5 @@
 [@bs.val] external document: Js.t({..}) = "document";
 [@bs.val] external _object: Js.t({..}) = "Object";
-[@bs.module "tauri/api/event"] external emit : (string, string) => unit = "emit";
-[@bs.module "tauri/api/event"] external listen : (string, 'a => unit) => unit = "listen";
 
 let makeContainer = (text) => {
   let container = document##createElement("div");
@@ -25,11 +23,3 @@ ReactDOM.render(
         </div>
     </div>, 
     makeContainer("root"));
-
-
-listen("rust-event", reply => {
-    Js.log("test");
-    let cards = reply##payload##cards;
-    Js.log(Array.length(cards));
-    Js.log(cards);
-});

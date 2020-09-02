@@ -70,12 +70,7 @@ let make = (~setShowNewDeck) => {
 
         switch deckJson {
         | Some(v) => {
-            let createCmd: Utility.createDeckCommand = {
-                cmd: "createDeck",
-                deckName: deckName,
-                deck: v,
-            };
-            Utility.createDeck(createCmd);
+            Tauri.createDeck(deckName, v);
         }
         | None => ()
         };
