@@ -7,8 +7,18 @@ type createDeckCommand = {
 };
 
 type importDeckCommand = {
-    deckPath: string
+    cmd: string,
+    path: string,
 };
 
 [@bs.module "tauri/api/tauri"] external createDeck : createDeckCommand => unit = "invoke";
-[@bs.module "tauri/api/tauri"] external importDeck : importDeckCommand => unit = "invoke";
+[@bs.module "tauri/api/tauri"] external importDeckInvoke : importDeckCommand => unit = "invoke";
+
+let importDeck = (path) => {
+    let command = {
+        cmd: "importDeck",
+        path: path,
+    };
+
+    importDeckInvoke(command);
+};

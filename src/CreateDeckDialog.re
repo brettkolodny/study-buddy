@@ -25,15 +25,14 @@ let make = (~setShowDialog, ~setShowNewDeck) => {
     let openDeck = () => {
         let _paths = tauriOpen() 
         |> Js.Promise.then_(value => {
-                Js.log(value);
+                Utility.importDeck(value);
                 closeWindow();
                 Js.Promise.resolve(Some(value));
             })
         |> Js.Promise.catch(err => {
                 Js.log(err);
                 Js.Promise.resolve(None);
-            });
-
+            })
     };
 
     let newClick = () => {

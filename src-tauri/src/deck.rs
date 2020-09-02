@@ -1,4 +1,5 @@
 use serde::{Serialize, Deserialize};
+use std::fs;
 
 #[derive(Serialize, Deserialize)]
 pub struct Deck {
@@ -21,21 +22,23 @@ impl Deck {
         deck
     }
 
-    pub fn test() -> Self {
-        let card1 = Card { 
-            front: String::from("side1"), 
-            back: String::from("side2"),
-            priority: 0
+    pub fn file_is_deck(deck_path: &str) -> bool {
+        let deck_string: String = {
+            let tmp = fs::read_to_string(deck_path);
+
+            if let Ok(s) = tmp {
+                s
+            } else {
+                return false;
+            }
         };
 
-        let card2 = Card { 
-            front: String::from("side1"), 
-            back: String::from("side2"),
-            priority: 0
-        };
+        let deck: Result<Deck, serde_json::Error> = serde_json::from_str(&deck_string);
 
-        let cards = vec![card1, card2];
-
-        Deck { name: "test".to_string(), cards }
+        if let Ok(_) = deck {
+            true
+        } else {
+            false
+        }
     }
 }

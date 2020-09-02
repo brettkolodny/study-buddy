@@ -3,9 +3,7 @@ use serde::Deserialize;
 #[derive(Deserialize)]
 #[serde(tag = "cmd", rename_all = "camelCase")]
 pub enum Cmd {
-  // your custom commands
-  // multiple arguments are allowed
-  // note that rename_all = "camelCase": you need to use "myCustomCommand" on JS
-  MyCustomCommand { argument: String },
-  CreateDeck { deckName: String, deck: String },
+  #[serde(rename_all = "camelCase")]
+  CreateDeck { deck_name: String, deck: String },
+  ImportDeck { path: String },
 }
