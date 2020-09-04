@@ -2,13 +2,13 @@
 let make = (~deckName, ~dueCards, ~newCards) => {
     <div className="deck">
         <div className="deck-name-div">
-            <span>{ReasonReact.string(deckName)}</span>
+            <span>{React.string(deckName)}</span>
         </div>
         <div className="deck-due-div">
-            <span>{ReasonReact.string(string_of_int(dueCards))}</span>
+            <span>{React.string(dueCards)}</span>
         </div>
         <div className="deck-new-div">
-            <span>{ReasonReact.string(string_of_int(newCards))}</span>
+            <span>{React.string(newCards)}</span>
         </div>
     </div>
 };

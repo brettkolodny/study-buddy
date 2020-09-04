@@ -72,22 +72,38 @@ fn main() {
 
             GetDecks { callback, error }=> {
               #[derive(Serialize)]
-              #[serde(tag = "cmd", rename_all = "camelCase")]
+              #[serde(rename_all = "camelCase")]
               struct DeckInfo {
                 deck_name: String,
                 due_cards: String,
                 new_cards: String,
               }
 
-              let test = DeckInfo { 
-                deck_name: "Bio".to_string(),
-                due_cards: "10".to_string(),
-                new_cards: "10".to_string(),
-              };
+              let buddy_dir = get_buddy_dir().unwrap();
+              let deck_paths = fs::read_dir(buddy_dir).unwrap();
+
+              let mut decks: Vec<DeckInfo> = Vec::new();
+
+              for deck in deck_paths {
+                let deck_name = {
+                  let deck_path = deck.unwrap().path();
+                  let path_string = deck_path.to_str().unwrap();
+                  let path_split: Vec<&str> = path_string.split("/").collect();
+                  let deck_file_name = path_split[path_split.len() - 1];
+
+                  let deck_name_split: Vec<&str> = deck_file_name.split(".").collect();
+
+                  deck_name_split[deck_name_split.len() - 2].to_string()
+                };
+
+                decks.push(DeckInfo { 
+                  deck_name, due_cards: "-1".to_string(), new_cards: "-1".to_string()
+                });
+              }
 
               tauri::execute_promise(
                 _webview,
-                move || Ok(test),
+                move || Ok(decks),
                 callback,
                 error,
               )

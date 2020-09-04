@@ -7,7 +7,7 @@
 let downSvg = Utility.require("../assets/svg/down.svg");
 
 [@react.component]
-let make = (~setShowDialog, ~setShowNewDeck) => {
+let make = (~setShowDialog, ~setShowNewDeck, ~updateDecks) => {
     let closeWindow = () => {
         let container = getElementById("create-dialog", document)
 
@@ -23,13 +23,14 @@ let make = (~setShowDialog, ~setShowNewDeck) => {
         let _paths = Tauri.openDialog() 
         |> Js.Promise.then_(value => {
                 Tauri.importDeck(value);
+                updateDecks();
                 closeWindow();
                 Js.Promise.resolve(Some(value));
             })
         |> Js.Promise.catch(err => {
                 Js.log(err);
                 Js.Promise.resolve(None);
-            })
+            });
     };
 
     let newClick = () => {
@@ -40,10 +41,10 @@ let make = (~setShowDialog, ~setShowNewDeck) => {
     <div id="create-dialog" className="open">
         <div id="create-buttons">
             <div className="create-button" onClick={_ => newClick()}>
-                <span>{ReasonReact.string("New")}</span>
+                <span>{React.string("New")}</span>
             </div>
             <div className="create-button" onClick={_ => openDeck()}>
-                <span>{ReasonReact.string("Import")}</span>
+                <span>{React.string("Import")}</span>
             </div>
         </div>
         <div className="down">

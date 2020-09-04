@@ -20,7 +20,7 @@ type deck = {
 };
 
 [@react.component]
-let make = (~setShowNewDeck) => {
+let make = (~setShowNewDeck, ~updateDecks) => {
     let (cards, setCards) = React.useState(() => []);
     let (deckName, setDeckName) = React.useState(() => "Untitled");
 
@@ -71,6 +71,7 @@ let make = (~setShowNewDeck) => {
         switch deckJson {
         | Some(v) => {
             Tauri.createDeck(deckName, v);
+            updateDecks();
         }
         | None => ()
         };
@@ -95,9 +96,9 @@ let make = (~setShowNewDeck) => {
                 {
                     let numCards = List.length(cards);
                     if (numCards == 1) {
-                        ReasonReact.string("1 card");
+                        React.string("1 card");
                     } else {
-                        (numCards -> string_of_int ++ " cards") -> ReasonReact.string;
+                        (numCards -> string_of_int ++ " cards") -> React.string;
                     };
                 }
             </div>

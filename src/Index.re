@@ -10,16 +10,20 @@ let makeContainer = (text) => {
   container;
 };
 
-ReactDOM.render(
-    <div id="container"> 
-        <div id="top-background"></div>
-        <div id="top">
-            <h5 id="title">{ReasonReact.string("Study Buddy")}</h5>
-            <CreateDeck />
-        </div>
-        <div id="decks">
-            <Deck deckName="Japanese" dueCards=10 newCards=20 />
-            <Deck deckName="Biochem" dueCards=15 newCards=20 />
-        </div>
-    </div>, 
-    makeContainer("root"));
+let load = () => {
+  let _ = Tauri.getDecksPromisified({ cmd: "getDecks" })
+  |> Js.Promise.then_(decks => {
+      switch( ReactDOM.querySelector("#root")) {
+      | Some(root) => ReactDOM.render(<App loadedDecks=decks />, root)
+      | None => ()
+      };
+
+    Js.Promise.resolve(Some(decks));
+  })
+  |> Js.Promise.catch(err => {
+      Js.log(err);
+      Js.Promise.resolve(None);
+  });
+};
+
+load();

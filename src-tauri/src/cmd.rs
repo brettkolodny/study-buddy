@@ -6,5 +6,5 @@ pub enum Cmd {
   #[serde(rename_all = "camelCase")]
   CreateDeck { deck_name: String, deck: String },
   ImportDeck { path: String },
-  Test,
+  GetDecks { callback: String, error: String },
 }
