@@ -40,48 +40,57 @@ fn main() {
         }
         Ok(command) => {
           match command {
-            // definitions for your custom commands from Cmd here
             CreateDeck { deck_name, deck } => {
-              if let Some(mut home) = home::home_dir() {
-                let tauri_path = PathBuf::from(".tauri/decks");
-                home.push(tauri_path);
-                
-                if !home.as_path().exists() {
-                  fs::create_dir_all(home.as_path());
-                }
+              let mut buddy_dir = get_buddy_dir().unwrap();
 
-                home.push(PathBuf::from(format!("{}.json", deck_name)));
-                fs::write(home.as_path(), deck.as_bytes()).unwrap();
-              }
+              buddy_dir.push(PathBuf::from(format!("{}.json", deck_name)));
+              fs::write(buddy_dir.as_path(), deck.as_bytes()).unwrap();
             },
+
             ImportDeck { path } => {
               let is_file = Deck::file_is_deck(&path);
               
               if is_file {
-                let split_path: Vec<&str> = path.split("/").collect();
+                let deck = {
+                  let path_split: Vec<&str> = path.split("/").collect();
 
-                let file = split_path[split_path.len() - 1];
-                if let Some(mut home) = home::home_dir() {
-                  let tauri_path = PathBuf::from(".tauri/decks");
-                  home.push(tauri_path);
-                  
-                  if !home.as_path().exists() {
-                    fs::create_dir_all(home.as_path());
-                  }
-  
-                  home.push(PathBuf::from(file));
-                  
-                  fs::copy(&path, &home.as_path());
+                  path_split[path_split.len() - 1]
+                };
 
-                }
+                let mut buddy_dir = get_buddy_dir().unwrap();
+                buddy_dir.push(PathBuf::from(deck));
+                
+                fs::copy(&path, &buddy_dir.as_path());
+
+                let mut webview = _webview.as_mut();
+                tauri::event::emit(&mut webview, String::from("update-deck-list"), Some(""))
+                  .expect("failed to emit");
               } else {
                 dbg!{"is not deck"};
               }
             },
-            Test => {
-              let mut webview = _webview.as_mut();
-              tauri::event::emit(&mut webview, String::from("test-event"), Some("from rust"))
-                .expect("failed to emit");
+
+            GetDecks { callback, error }=> {
+              #[derive(Serialize)]
+              #[serde(tag = "cmd", rename_all = "camelCase")]
+              struct DeckInfo {
+                deck_name: String,
+                due_cards: String,
+                new_cards: String,
+              }
+
+              let test = DeckInfo { 
+                deck_name: "Bio".to_string(),
+                due_cards: "10".to_string(),
+                new_cards: "10".to_string(),
+              };
+
+              tauri::execute_promise(
+                _webview,
+                move || Ok(test),
+                callback,
+                error,
+              )
             }
           }
           Ok(())
@@ -90,4 +99,19 @@ fn main() {
     })
     .build()
     .run();
+}
+
+fn get_buddy_dir() -> Result<PathBuf, String> {
+  if let Some(mut home) = home::home_dir() {
+    let buddy_path = PathBuf::from(".studdy_buddy/decks");
+    home.push(buddy_path);
+    
+    if !home.as_path().exists() {
+      fs::create_dir_all(home.as_path());
+    }
+
+    Ok(home)
+  } else {
+    Err("Could not locate home directory".to_string())
+  }
 }
